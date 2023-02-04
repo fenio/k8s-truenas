@@ -10,8 +10,9 @@ You can use democratic-csi documentation and achieve the same results but the re
 # Preparations
 
 ## Nodes
-All your nodes should be capable of using NFS/iSCSI. In my case it's being handled by [dumb-provisioner](https://github.com/fenio/dumb-provisioner) but in case you're not using such extremaly advanced technology then just run this on every node:
-```apt install nfs-common open-iscsi multipath-tools scsitools lsscsi
+All your nodes should be capable of using NFS/iSCSI. In my case it's being handled by [dumb-provisioner](https://github.com/fenio/dumb-provisioner) but in general you just have to run this on every node:
+```
+apt install nfs-common open-iscsi multipath-tools scsitools lsscsi
 cat <<EOF > /etc/multipath.conf
 defaults {
     user_friendly_names yes
