@@ -20,8 +20,24 @@ defaults {
 }
 EOF
 ```
-Slash in front of lines means you have to run it as root. So in case you're on Ubuntu just add sudo in front of these commands.
+Slash at the beginning of lines means you have to run it as root. So in case you're on Ubuntu just add sudo in front of these commands.
 In case of Fedora/RedHat based systems something like that should also work:
 ```
 # dnf install -y lsscsi iscsi-initiator-utils sg3_utils device-mapper-multipath
+```
+
+## TrueNAS Scale
+
+# Installine democratic-csi
+
+```
+helm upgrade --install --create-namespace --values <EXPLAINED BELOW> --namespace storage iscsi democratic-csi/democratic-csi
+```
+
+Creating files with values.
+
+# NFS
+```
+wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-nfs.yaml -O - | sed '/INLINE/,$d' > nfs.yaml
+wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-nfs.yaml | sed -e 's/^/    /g' >> nfs.yaml
 ```
