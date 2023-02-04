@@ -152,6 +152,6 @@ driver:
 This is simplified version of values.yaml. Below is the command to get file with comments.
 
 ```
-wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-iscsi.yaml -O - | sed '/INLINE/,$d' > nfs.yaml
-wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-iscsi.yaml | sed -e 's/^/    /g' >> nfs.yaml
+wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-iscsi.yaml -O - | sed '/INLINE/,$d' > iscsi.yaml
+wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-iscsi.yaml | sed -e 's/^/    /g' >> iscsi.yaml
 ```
