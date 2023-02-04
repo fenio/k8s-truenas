@@ -48,12 +48,109 @@ helm upgrade --install --create-namespace --values <EXPLAINED BELOW> --namespace
 Creating files with values.
 
 # NFS
+
+```
+csiDriver:
+  name: "nfs"
+storageClasses:
+- name: nfs
+  defaultClass: false
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+  allowVolumeExpansion: true
+  parameters:
+    fsType: nfs
+  mountOptions:
+  - noatime
+  - nfsvers=3
+volumeSnapshotClasses: []
+driver:
+  config:
+    driver: freenas-api-nfs
+    instance_id:
+    httpConnection:
+      protocol: http
+      host: 10.10.20.100
+      port: 80
+      apiKey: 1-IvCjJtMLUhEzIRezRzZtz4rK1HKRIFWd1UFK5ay52HogLUrwC2UxjHNQWODCRGhe
+      allowInsecure: true
+    zfs:
+      datasetParentName: storage/k8s/nfs/v
+      detachedSnapshotsDatasetParentName: storage/k8s/nfs/s
+      datasetEnableQuotas: true
+      datasetEnableReservation: false
+      datasetPermissionsMode: "0777"
+      datasetPermissionsUser: 0
+      datasetPermissionsGroup: 0
+    nfs:
+      shareHost: 10.10.20.100
+      shareAlldirs: false
+      shareAllowedHosts: []
+      shareAllowedNetworks: []
+      shareMaprootUser: root
+      shareMaprootGroup: root
+      shareMapallUser: ""
+      shareMapallGroup: ""
+```
+This is simplified version of values.yaml. Below is the command to get file with comments.
+
 ```
 wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-nfs.yaml -O - | sed '/INLINE/,$d' > nfs.yaml
 wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-nfs.yaml | sed -e 's/^/    /g' >> nfs.yaml
 ```
 
 # iSCSI
+```
+csiDriver:
+  name: "iscsi"
+storageClasses:
+- name: iscsi
+  defaultClass: false
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+  allowVolumeExpansion: true
+  parameters:
+    fsType: ext4
+  mountOptions: []
+volumeSnapshotClasses: []
+driver:
+  config:
+    driver: freenas-api-iscsi
+    instance_id:
+    httpConnection:
+      protocol: http
+      host: 10.10.20.100
+      port: 80
+      apiKey: 1-IvCjJtMLUhEzIRezRzZtz4rK1HKRIFWd1UFK5ay52HogLUrwC2UxjHNQWODCRGhe
+      allowInsecure: true
+    zfs:
+      datasetParentName: storage/k8s/iscsi/v
+      detachedSnapshotsDatasetParentName: storage/k8s/iscsi/s
+      zvolCompression:
+      zvolDedup:
+      zvolEnableReservation: false
+      zvolBlocksize:
+    iscsi:
+      targetPortal: "10.10.20.100:3260"
+      targetPortals: [] 
+      interface:
+      namePrefix: csi-
+      nameSuffix: "-clustera"
+      targetGroups:
+        - targetGroupPortalGroup: 1
+          targetGroupInitiatorGroup: 1
+          targetGroupAuthType: None
+          targetGroupAuthGroup:
+      extentInsecureTpc: true
+      extentXenCompat: false
+      extentDisablePhysicalBlocksize: true
+      extentBlocksize: 512
+      extentRpm: "SSD"
+      extentAvailThreshold: 0
+```
+
+This is simplified version of values.yaml. Below is the command to get file with comments.
+
 ```
 wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-iscsi.yaml -O - | sed '/INLINE/,$d' > nfs.yaml
 wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-iscsi.yaml | sed -e 's/^/    /g' >> nfs.yaml
