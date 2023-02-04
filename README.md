@@ -12,11 +12,16 @@ You can use democratic-csi documentation and achieve the same results but the re
 ## Nodes
 All your nodes should be capable of using NFS/iSCSI. In my case it's being handled by [dumb-provisioner](https://github.com/fenio/dumb-provisioner) but in general you just have to run this on every node:
 ```
-apt install nfs-common open-iscsi multipath-tools scsitools lsscsi
-cat <<EOF > /etc/multipath.conf
+# apt install nfs-common open-iscsi multipath-tools scsitools lsscsi
+# cat <<EOF > /etc/multipath.conf
 defaults {
     user_friendly_names yes
     find_multipaths yes
 }
 EOF
+```
+Slash in front of lines means you have to run it as root. So in case you're on Ubuntu just add sudo in front of these commands.
+In case of Fedora/RedHat based systems something like that should also work:
+```
+# dnf install -y lsscsi iscsi-initiator-utils sg3_utils device-mapper-multipath
 ```
