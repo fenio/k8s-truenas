@@ -9,8 +9,8 @@ You can use democratic-csi documentation and achieve the same results but the re
 
 # Preparations
 
-* Nodes section needs to be run (yeah!) on nodes of your cluster
-* NAS section needs to be done on your NAS and assumption is that this is TrueNAS Scale based NAS
+* Nodes section needs to be run on nodes of your cluster, preferably Debian based
+* NAS section needs to be done on your NAS and assumption is that this is TrueNAS Scale based solution
 * K8S section needs to be run on whatever machine you're using to manage your cluster
 
 ## Nodes
@@ -24,7 +24,7 @@ defaults {
 }
 EOF
 ```
-Slash at the beginning of lines means you have to run it as root. So in case you're on Ubuntu just add sudo in front of these commands.
+Slash at the beginning of lines means you have to run them as root. So in case you're on Ubuntu just add sudo in front of these commands.
 In case of Fedora/RedHat based systems something like that should also work:
 ```
 # dnf install -y lsscsi iscsi-initiator-utils sg3_utils device-mapper-multipath
@@ -51,4 +51,10 @@ Creating files with values.
 ```
 wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-nfs.yaml -O - | sed '/INLINE/,$d' > nfs.yaml
 wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-nfs.yaml | sed -e 's/^/    /g' >> nfs.yaml
+```
+
+# iSCSI
+```
+wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-iscsi.yaml -O - | sed '/INLINE/,$d' > nfs.yaml
+wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-iscsi.yaml | sed -e 's/^/    /g' >> nfs.yaml
 ```
