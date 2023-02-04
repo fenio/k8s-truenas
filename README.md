@@ -9,6 +9,10 @@ You can use democratic-csi documentation and achieve the same results but the re
 
 # Preparations
 
+* Nodes section needs to be run (yeah!) on nodes of your cluster
+* NAS section needs to be done on your NAS and assumption is that this is TrueNAS Scale based NAS
+* K8S section needs to be run on whatever machine you're using to manage your cluster
+
 ## Nodes
 All your nodes should be capable of using NFS/iSCSI. In my case it's being handled by [dumb-provisioner](https://github.com/fenio/dumb-provisioner) but in general you just have to run this on every node:
 ```
@@ -26,9 +30,16 @@ In case of Fedora/RedHat based systems something like that should also work:
 # dnf install -y lsscsi iscsi-initiator-utils sg3_utils device-mapper-multipath
 ```
 
-## TrueNAS Scale
+## NAS 
 
-# Installing democratic-csi
+Need to make screenshots.
+
+## K8S
+Let's start with adding repo.
+```
+helm repo add democratic-csi https://democratic-csi.github.io/charts/
+helm repo update
+```
 
 ```
 helm upgrade --install --create-namespace --values <EXPLAINED BELOW> --namespace storage iscsi democratic-csi/democratic-csi
