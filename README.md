@@ -28,7 +28,7 @@ In case of Fedora/RedHat based systems something like that should also work:
 
 ## TrueNAS Scale
 
-# Installine democratic-csi
+# Installing democratic-csi
 
 ```
 helm upgrade --install --create-namespace --values <EXPLAINED BELOW> --namespace storage iscsi democratic-csi/democratic-csi
