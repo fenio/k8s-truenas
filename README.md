@@ -4,6 +4,8 @@
 You can use democratic-csi documentation and achieve the same results but the reason I created this guide is the fact that democratic-csi docs are covering multiple awkward combinations of various technologies and if you just want to have NFS/iSCSI over API then the whole setup guide can be much simpler.
 
 # Prerequisities
+You're here cause you want to connect Kubernetes cluster to TrueNAS Scale based NAS right?
+So you need:
 * k8s cluster - in my case deployed using [kubespray](https://kubespray.io) but it shouldn't really matter what you use to create it.
 * NAS based on TrueNAS Scale - in my case it's [ugly-nas](https://github.com/fenio/ugly-nas) 
 
