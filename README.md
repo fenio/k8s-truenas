@@ -92,7 +92,7 @@ driver:
       shareMapallUser: ""
       shareMapallGroup: ""
 ```
-Above is simplified/strimlined version of values file. Below is the command to get full file with comments.
+Above is simplified/streamlined version of values file. Below is the command to get full file with comments.
 
 ```
 wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-nfs.yaml -O - | sed '/INLINE/,$d' > nfs.yaml
@@ -150,7 +150,7 @@ driver:
       extentAvailThreshold: 0
 ```
 
-Again above is simplified/strimlined version of values file. Below is the command to get file with comments.
+Again above is simplified/streamlined version of values file. Below is the command to get file with comments.
 
 ```
 wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-iscsi.yaml -O - | sed '/INLINE/,$d' > iscsi.yaml
