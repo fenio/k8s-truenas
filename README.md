@@ -43,13 +43,10 @@ helm repo add democratic-csi https://democratic-csi.github.io/charts/
 helm repo update
 ```
 
-```
-helm upgrade --install --create-namespace --values <EXPLAINED BELOW> --namespace storage iscsi democratic-csi/democratic-csi
-```
 
-Creating files with values.
+# Files with values.
 
-# NFS
+## nfs.yaml
 
 ```
 csiDriver:
@@ -95,14 +92,14 @@ driver:
       shareMapallUser: ""
       shareMapallGroup: ""
 ```
-This is simplified version of values.yaml. Below is the command to get file with comments.
+Above is simplified/strimlined version of values file. Below is the command to get full file with comments.
 
 ```
 wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-nfs.yaml -O - | sed '/INLINE/,$d' > nfs.yaml
 wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-nfs.yaml -O - | sed -e 's/^/    /g' >> nfs.yaml
 ```
 
-# iSCSI
+## iscsi.yaml
 ```
 csiDriver:
   name: "iscsi"
@@ -153,9 +150,17 @@ driver:
       extentAvailThreshold: 0
 ```
 
-This is simplified version of values.yaml. Below is the command to get file with comments.
+Again above is simplified/strimlined version of values file. Below is the command to get file with comments.
 
 ```
 wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-iscsi.yaml -O - | sed '/INLINE/,$d' > iscsi.yaml
 wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-iscsi.yaml -O - | sed -e 's/^/    /g' >> iscsi.yaml
+```
+
+Once you've got your files you can install democratic-csi like this:
+
+
+```
+helm upgrade --install --create-namespace --values nfs.yaml --namespace storage nfs democratic-csi/democratic-csi
+helm upgrade --install --create-namespace --values iscsi.yaml --namespace storage iscsi democratic-csi/democratic-csi
 ```
