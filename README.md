@@ -63,7 +63,8 @@ storageClasses:
   mountOptions:
   - noatime
   - nfsvers=3
-volumeSnapshotClasses: []
+volumeSnapshotClasses:
+- name: nfs
 driver:
   config:
     driver: freenas-api-nfs
@@ -112,7 +113,8 @@ storageClasses:
   parameters:
     fsType: ext4
   mountOptions: []
-volumeSnapshotClasses: []
+volumeSnapshotClasses:
+- name: nfs
 driver:
   config:
     driver: freenas-api-iscsi
