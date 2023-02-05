@@ -16,7 +16,7 @@ So you need:
 * K8S section needs to be run on whatever machine you're using to manage your cluster
 
 ## Nodes
-All your nodes should be capable of using NFS/iSCSI. In my case it's being handled by [dumb-provisioner](https://github.com/fenio/dumb-provisioner) but in general you just have to run this on every node:
+All your nodes should be capable of using NFS/iSCSI shares. It means that some extra packages need to be installed on them. In my case it's being handled by [dumb-provisioner](https://github.com/fenio/dumb-provisioner) which takes care of installing my terminals but in general you just have to run this on every node:
 ```
 # apt install nfs-common open-iscsi multipath-tools scsitools lsscsi
 # cat <<EOF > /etc/multipath.conf
@@ -75,7 +75,7 @@ driver:
       protocol: http
       host: 10.10.20.100
       port: 80
-      apiKey: 1-IvCjJtMLUhEzIRezRzZtz4rK1HKRIFWd1UFK5ay52HogLUrwC2UxjHNQWODCRGhe
+      apiKey: 1-IvCjJtMLUhEUseYourOwnrK1HKRIFWd1UFK5ay52HogLUrwC2UxjHNQWODCRGhe
       allowInsecure: true
     zfs:
       datasetParentName: storage/k8s/nfs/v
@@ -125,7 +125,7 @@ driver:
       protocol: http
       host: 10.10.20.100
       port: 80
-      apiKey: 1-IvCjJtMLUhEzIRezRzZtz4rK1HKRIFWd1UFK5ay52HogLUrwC2UxjHNQWODCRGhe
+      apiKey: 1-IvCjJtMLUhEUseYourOwnrK1HKRIFWd1UFK5ay52HogLUrwC2UxjHNQWODCRGhe
       allowInsecure: true
     zfs:
       datasetParentName: storage/k8s/iscsi/v
