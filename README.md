@@ -1,7 +1,10 @@
 # k8s + TrueNAS Scale using democratic-csi
+
 [democratic-csi](https://github.com/democratic-csi/democratic-csi) based simple guide to use Kubernetes cluster with TrueNAS Scale over API. 
 
-You can use democratic-csi documentation and achieve the same results but the reason I created this guide is the fact that democratic-csi docs are covering multiple awkward combinations of various technologies and if you just want to have NFS/iSCSI over API then the whole setup guide can be much simpler.
+You can use democratic-csi documentation and achieve the same results but the reason I created this 
+guide is the fact that democratic-csi docs are covering multiple awkward combinations of various 
+technologies and if you just want to have NFS/iSCSI over API then the whole setup guide can be much simpler.
 
 # Prerequisities
 You're here cause you want to connect Kubernetes cluster to TrueNAS Scale based NAS right?
@@ -16,7 +19,10 @@ So you need:
 * K8S section needs to be run on whatever machine you're using to manage your cluster
 
 ## Nodes
-All your nodes should be capable of using NFS/iSCSI shares. It means that some extra packages need to be installed on them. In my case it's being handled by [dumb-provisioner](https://github.com/fenio/dumb-provisioner) which takes care of installing my terminals but in general you just have to run this on every node:
+All your nodes should be capable of using NFS/iSCSI shares. It means that some extra packages need to be installed 
+on them. In my case it's being handled by [dumb-provisioner](https://github.com/fenio/dumb-provisioner) 
+which takes care of installing my terminals but in general you just have to run this on every node:
+
 ```
 # apt install nfs-common open-iscsi multipath-tools scsitools lsscsi
 # cat <<EOF > /etc/multipath.conf
@@ -26,8 +32,10 @@ defaults {
 }
 EOF
 ```
+
 Slash at the beginning of lines means you have to run them as root. So in case you're on Ubuntu just add sudo in front of these commands.
 In case of Fedora/RedHat based systems something like that should also work:
+
 ```
 # dnf install -y lsscsi iscsi-initiator-utils sg3_utils device-mapper-multipath
 ```
@@ -38,6 +46,7 @@ Need to make screenshots.
 
 ## K8S
 Let's start with adding repo.
+
 ```
 helm repo add democratic-csi https://democratic-csi.github.io/charts/
 helm repo update
