@@ -33,7 +33,7 @@ defaults {
 EOF
 ```
 
-Slash at the beginning of lines means you have to run them as root. So in case you're on Ubuntu just add sudo in front of these commands.
+Hash at the beginning of lines means you have to run them as root. So in case you're on Ubuntu just add sudo in front of these commands.
 In case of Fedora/RedHat based systems something like that should also work:
 
 ```
