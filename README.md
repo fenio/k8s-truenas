@@ -1,4 +1,4 @@
-# k8s + TrueNAS Scale using democratic-csi
+## k8s + TrueNAS Scale using democratic-csi
 
 [democratic-csi](https://github.com/democratic-csi/democratic-csi) based simple guide to use Kubernetes cluster with TrueNAS Scale over API. 
 
@@ -6,19 +6,19 @@ You can use democratic-csi documentation and achieve the same results but the re
 guide is the fact that democratic-csi docs are covering multiple awkward combinations of various 
 technologies and if you just want to have NFS/iSCSI over API then the whole setup guide can be much simpler.
 
-# Prerequisities
+### Prerequisities
 You're here cause you want to connect Kubernetes cluster to TrueNAS Scale based NAS right?
 So you need:
 * k8s cluster - in my case deployed using [kubespray](https://kubespray.io) but it shouldn't really matter what you use to create it.
 * NAS based on TrueNAS Scale - in my case it's [ugly-nas](https://github.com/fenio/ugly-nas) 
 
-# Preparations
+## Preparations
 
 * Nodes section needs to be run on nodes of your cluster, preferably Debian based
 * NAS section needs to be done on your NAS and assumption is that this is TrueNAS Scale based solution
 * K8S section needs to be run on whatever machine you're using to manage your cluster
 
-## Nodes
+### Nodes
 All your nodes should be capable of using NFS/iSCSI shares. It means that some extra packages need to be installed 
 on them. In my case it's being handled by [dumb-provisioner](https://github.com/fenio/dumb-provisioner) 
 which takes care of installing my terminals but in general you just have to run this on every node:
@@ -40,14 +40,14 @@ In case of Fedora/RedHat based systems something like that should also work:
 # dnf install -y lsscsi iscsi-initiator-utils sg3_utils device-mapper-multipath
 ```
 
-## NAS 
+### NAS 
 
-# Let's start with creating API key
+## Let's start with creating API key
 
 ![API](api.png)
 Need to make screenshots.
 
-## K8S
+### K8S
 Let's start with adding repo.
 
 ```
@@ -56,9 +56,9 @@ helm repo update
 ```
 
 
-# Files with values.
+## Files with values.
 
-## nfs.yaml
+### nfs.yaml
 
 ```
 csiDriver:
@@ -111,7 +111,7 @@ wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democ
 wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-nfs.yaml -O - | sed -e 's/^/    /g' >> nfs.yaml
 ```
 
-## iscsi.yaml
+### iscsi.yaml
 ```
 csiDriver:
   name: "iscsi"
