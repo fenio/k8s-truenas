@@ -42,6 +42,9 @@ In case of Fedora/RedHat based systems something like that should also work:
 
 ## NAS 
 
+# Let's start with creating API key
+
+![API](api.png)
 Need to make screenshots.
 
 ## K8S
