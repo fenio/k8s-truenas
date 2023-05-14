@@ -77,7 +77,7 @@ storageClasses:
 volumeSnapshotClasses:
 - name: nfs
   parameters:
-    detachedSnapshots: "false"
+    detachedSnapshots: "true"
 driver:
   config:
     driver: freenas-api-nfs
@@ -129,7 +129,7 @@ storageClasses:
 volumeSnapshotClasses:
 - name: nfs
   parameters:
-    detachedSnapshots: "false"
+    detachedSnapshots: "true"
 driver:
   config:
     driver: freenas-api-iscsi
