@@ -48,6 +48,10 @@ In case of Fedora/RedHat based systems something like that should also work:
 
 Key copied into clipboard needs to be used in YAML files below as apiKey.
 
+Datasets creation for both NFS and iSCSI
+
+![DATASETS](datasets.gif)
+
 ### K8S
 Let's start with adding repo.
 
