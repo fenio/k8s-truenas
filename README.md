@@ -44,11 +44,9 @@ In case of Fedora/RedHat based systems something like that should also work:
 
 ## Let's start with creating API key
 
-![API](api.png)
-Need to make screenshots.
+![API](api.gif)
 
-![API2](api.gif)
-Gif test
+Key copied into clipboard needs to be used in YAML files below as apiKey.
 
 ### K8S
 Let's start with adding repo.
