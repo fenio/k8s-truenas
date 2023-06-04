@@ -47,6 +47,9 @@ In case of Fedora/RedHat based systems something like that should also work:
 ![API](api.png)
 Need to make screenshots.
 
+![API2](api.gif)
+Gif test
+
 ### K8S
 Let's start with adding repo.
 
