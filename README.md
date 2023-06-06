@@ -118,6 +118,8 @@ wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democ
 wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-nfs.yaml -O - | sed -e 's/^/    /g' >> nfs.yaml
 ```
 
+Make sure to double check your actual portal ID in CLI or over API as TrueNAS WebUI isn't really reliable with regard to that.
+
 ### iscsi.yaml
 ```
 csiDriver:
