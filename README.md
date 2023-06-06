@@ -60,6 +60,11 @@ helm repo add democratic-csi https://democratic-csi.github.io/charts/
 helm repo update
 ```
 
+Now few words about yaml files used as values for helm charts. 
+Since democratic-csi tries to be universal and they cover bunch of different scenarios (which is great BTW) it means that to prepare file used as as values for helm chart you have to combine at least two files from their repo. And they explain which files and under which conditions. But if you want to use just NFS/iSCSI and just over API then their documentation might be a bit confusing.
+Below files prepared by me are based on already combined files but for reference you will also find commands to create skeleton files that you can adapt yourself.
+But I want to make it clear. Below you will find simplified version of two files grabbed from democractic-csi repo, merged together, with removed comments and adapted to my needs.
+Most of the people will have to do the same but NOT all of them. So be aware that my files might not be something that you can copy and paste to your environment. 
 
 ## Files with values.
 
