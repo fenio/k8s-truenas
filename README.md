@@ -132,7 +132,7 @@ storageClasses:
     fsType: ext4
   mountOptions: []
 volumeSnapshotClasses:
-- name: nfs
+- name: iscsi
   parameters:
     detachedSnapshots: "true"
 driver:
