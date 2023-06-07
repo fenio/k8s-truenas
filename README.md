@@ -101,7 +101,7 @@ driver:
     instance_id:
     httpConnection:
       protocol: http
-      $\color{red}{host: 10.10.20.100}$
+      host: 10.10.20.100
       port: 80
       apiKey: 1-IvCjJtMLUhEUseYourOwnrK1HKRIFWd1UFK5ay52HogLUrwC2UxjHNQWODCRGhe
       allowInsecure: true
