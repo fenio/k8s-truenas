@@ -56,6 +56,9 @@ Now iSCSI configuration.
 
 ![ISCSI](iscsi.gif)
 
+And NFS configuration.
+
+![NFS](nfs.gif)
 
 ### K8S
 Let's start with adding repo.
