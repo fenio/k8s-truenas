@@ -60,6 +60,9 @@ And NFS configuration.
 
 ![NFS](nfs.gif)
 
+Be aware that above setups aren't hardened at all. It's just basic setup created just for tests.
+If you want to use it in production environment then you have to tweak it and make it more secure.
+
 ### K8S
 Let's start with adding repo.
 
