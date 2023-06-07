@@ -91,6 +91,7 @@ storageClasses:
   allowVolumeExpansion: true
   parameters:
     fsType: nfs
+    detachedVolumesFromSnapshots: "false"
   mountOptions:
   - noatime
   - nfsvers=3
@@ -170,6 +171,7 @@ storageClasses:
   allowVolumeExpansion: true
   parameters:
     fsType: ext4
+    detachedVolumesFromSnapshots: "false"
   mountOptions: []
 volumeSnapshotClasses:
 - name: iscsi
