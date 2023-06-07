@@ -1,4 +1,4 @@
-## k8s + TrueNAS Scale using democratic-csi
+## K8S + TrueNAS Scale using democratic-csi
 
 [democratic-csi](https://github.com/democratic-csi/democratic-csi) based simple guide to use Kubernetes cluster with TrueNAS Scale over API. 
 
@@ -9,7 +9,7 @@ technologies and if you just want to have NFS/iSCSI over API then the whole setu
 ### Prerequisities
 You're here cause you want to connect Kubernetes cluster to TrueNAS Scale based NAS right?
 So you need:
-* k8s cluster - in my case deployed using [kubespray](https://kubespray.io) but it shouldn't really matter what you use to create it.
+* K8S cluster - in my case deployed using [kubespray](https://kubespray.io) but it shouldn't really matter what you use to create it.
 * NAS based on TrueNAS Scale - in my case it's [ugly-nas](https://github.com/fenio/ugly-nas) 
 
 ## Preparations
@@ -226,4 +226,62 @@ Once you've got your files you can install democratic-csi like this:
 ```
 helm upgrade --install --create-namespace --values nfs.yaml --namespace storage nfs democratic-csi/democratic-csi
 helm upgrade --install --create-namespace --values iscsi.yaml --namespace storage iscsi democratic-csi/democratic-csi
+```
+
+### TEST
+
+Files that we can use to test actual PVC:
+
+pvc-iscsi.yaml
+```
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: test-claim-iscsi
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "iscsi"
+spec:
+  storageClassName: iscsi
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+```
+
+pvc-nfs.yaml
+```
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: test-claim-nfs
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "nfs"
+spec:
+  storageClassName: nfs
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+```
+
+And actual test:
+
+```
+# kubectl apply -f pvc-iscsi.yaml -f pvc-nfs.yaml
+persistentvolumeclaim/test-claim-iscsi created
+persistentvolumeclaim/test-claim-nfs created
+# kubectl get pvc
+NAME               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+test-claim-iscsi   Bound    pvc-461a9ab4-106b-4f62-b06b-746d9c8e8c73   1Gi        RWO            iscsi          11s
+test-claim-nfs     Bound    pvc-86623c48-6f32-4d29-8baf-7881c8da1ec2   1Gi        RWO            nfs            11s
+```
+
+And cleaning up.
+
+```
+# kubectl delete -f pvc-iscsi.yaml -f pvc-nfs.yaml
+persistentvolumeclaim "test-claim-iscsi" deleted
+persistentvolumeclaim "test-claim-nfs" deleted
 ```
