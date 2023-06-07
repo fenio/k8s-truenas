@@ -52,6 +52,11 @@ Datasets creation for both NFS and iSCSI
 
 ![DATASETS](datasets.gif)
 
+Now iSCSI configuration.
+
+![ISCSI](iscsi.gif)
+
+
 ### K8S
 Let's start with adding repo.
 
