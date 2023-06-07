@@ -125,6 +125,29 @@ wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/exam
 
 Make sure to double check your actual portal ID in CLI or over API as TrueNAS WebUI isn't really reliable with regard to that.
 
+Here's how to check it from NAS cli:
+
+```
+root@nas[~]# cli
+[nas]> sharing iscsi portal query
++----+-----+---------+--------+----------------------+---------------------+
+| id | tag | comment | listen | discovery_authmethod | discovery_authgroup |
++----+-----+---------+--------+----------------------+---------------------+
+| 8  | 1   | iscsi   | <list> | NONE                 | <null>              |
++----+-----+---------+--------+----------------------+---------------------+
+```
+
+Or straight from Linux shell but also using NAS cli:
+
+```
+root@nas[~]# cli -c "sharing iscsi portal query"
++----+-----+---------+--------+----------------------+---------------------+
+| id | tag | comment | listen | discovery_authmethod | discovery_authgroup |
++----+-----+---------+--------+----------------------+---------------------+
+| 8  | 1   | iscsi   | <list> | NONE                 | <null>              |
++----+-----+---------+--------+----------------------+---------------------+
+```
+
 ### iscsi.yaml
 ```
 csiDriver:
