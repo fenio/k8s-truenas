@@ -296,4 +296,6 @@ persistentvolumeclaim "test-claim-iscsi" deleted
 persistentvolumeclaim "test-claim-nfs" deleted
 ```
 
+```
 Color test $\sqrt{3x-1}+(1+x)^2$
+```
