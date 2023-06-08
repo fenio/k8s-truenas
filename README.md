@@ -18,6 +18,14 @@ So you need:
 * NAS section needs to be done on your NAS and assumption is that this is TrueNAS Scale based solution
 * K8S section needs to be run on whatever machine you're using to manage your cluster
 
+## My setup
+
+* Controlplane - 10.10.20.99
+* TrueNAS Scale - 10.10.20.100
+* node1 - 10.10.20.101
+* node2 - 10.10.20.102
+* node3 - 10.10.20.103
+
 ### Nodes
 All your nodes should be capable of using NFS/iSCSI shares. It means that some extra packages need to be installed 
 on them. In my case it's being handled by [dumb-provisioner](https://github.com/fenio/dumb-provisioner) 
@@ -237,6 +245,37 @@ helm upgrade --install --create-namespace --values iscsi.yaml --namespace storag
 ```
 
 If you're experimenting with various settings make sure to uninstall helm release everytime as above command will try to update existing release if it already exists.
+
+State after install (depends on how many nodes you've got in your cluster):
+
+```
+# helm ls -n storage
+NAME 	NAMESPACE	REVISION	UPDATED                              	STATUS  	CHART                	APP VERSION
+iscsi	storage  	1       	2023-06-07 18:54:00.318001 +0200 CEST	deployed	democratic-csi-0.13.7	1.0
+nfs  	storage  	1       	2023-06-07 18:55:42.713606 +0200 CEST	deployed	democratic-csi-0.13.7	1.0
+# kubectl get all -n storage
+NAME                                                   READY   STATUS    RESTARTS   AGE
+pod/iscsi-democratic-csi-controller-5bf8f859f6-4xcs4   5/5     Running   0          18h
+pod/iscsi-democratic-csi-node-cszgj                    4/4     Running   0          18h
+pod/iscsi-democratic-csi-node-f9cpm                    4/4     Running   0          18h
+pod/iscsi-democratic-csi-node-r9zgv                    4/4     Running   0          18h
+pod/nfs-democratic-csi-controller-658b478c97-v4qb9     5/5     Running   0          18h
+pod/nfs-democratic-csi-node-h5h7z                      4/4     Running   0          18h
+pod/nfs-democratic-csi-node-ql9lt                      4/4     Running   0          18h
+pod/nfs-democratic-csi-node-sfppn                      4/4     Running   0          18h
+
+NAME                                       DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+daemonset.apps/iscsi-democratic-csi-node   3         3         3       3            3           kubernetes.io/os=linux   18h
+daemonset.apps/nfs-democratic-csi-node     3         3         3       3            3           kubernetes.io/os=linux   18h
+
+NAME                                              READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/iscsi-democratic-csi-controller   1/1     1            1           18h
+deployment.apps/nfs-democratic-csi-controller     1/1     1            1           18h
+
+NAME                                                         DESIRED   CURRENT   READY   AGE
+replicaset.apps/iscsi-democratic-csi-controller-5bf8f859f6   1         1         1       18h
+replicaset.apps/nfs-democratic-csi-controller-658b478c97     1         1         1       18h
+```
 
 ### TEST
 
