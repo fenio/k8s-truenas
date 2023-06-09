@@ -106,6 +106,12 @@ storageClasses:
   mountOptions:
   - noatime
   - nfsvers=3
+  secrets:
+    provisioner-secret:
+    controller-publish-secret:
+    node-stage-secret:
+    node-publish-secret:
+    controller-expand-secret:
 volumeSnapshotClasses:
 - name: nfs
   parameters:
@@ -188,6 +194,12 @@ storageClasses:
     fsType: ext4
     detachedVolumesFromSnapshots: "false"
   mountOptions: []
+  secrets:
+    provisioner-secret:
+    controller-publish-secret:
+    node-stage-secret:
+    node-publish-secret:
+    controller-expand-secret:
 volumeSnapshotClasses:
 - name: iscsi
   parameters:
