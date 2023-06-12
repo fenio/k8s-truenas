@@ -31,7 +31,7 @@ All your nodes should be capable of using NFS/iSCSI shares. It means that some e
 on them. In my case it's being handled by [dumb-provisioner](https://github.com/fenio/dumb-provisioner) 
 which takes care of installing my terminals but in general you just have to run this on every node:
 
-```
+```shell
 # apt install nfs-common open-iscsi multipath-tools scsitools lsscsi
 # cat <<EOF > /etc/multipath.conf
 defaults {
@@ -160,7 +160,7 @@ Make sure to double check your actual portal ID in CLI or over API as TrueNAS We
 
 Here's how to check it from NAS cli:
 
-```shell
+```
 root@nas[~]# cli
 [nas]> sharing iscsi portal query
 +----+-----+---------+--------+----------------------+---------------------+
@@ -181,7 +181,7 @@ root@nas[~]# cli -c "sharing iscsi portal query"
 +----+-----+---------+--------+----------------------+---------------------+
 ```
 
-```
+<pre>
 csiDriver:
   name: "iscsi"
 storageClasses:
@@ -222,7 +222,7 @@ driver:
       zvolEnableReservation: false
       zvolBlocksize:
     iscsi:
-      targetPortal: "10.10.20.100:3260"
+      <color="red">targetPortal: "10.10.20.100:3260"</color>
       targetPortals: [] 
       interface:
       namePrefix: csi-
@@ -238,12 +238,12 @@ driver:
       extentBlocksize: 512
       extentRpm: "SSD"
       extentAvailThreshold: 0
-```
+</pre>
 
 Again above is simplified/streamlined version of values file. Below are the commands to get file with comments.
 You have to change portal details so at least its IP, group and initiator group.
 
-```
+```shell
 wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-iscsi.yaml -O - | sed '/INLINE/,$d' > iscsi.yaml
 wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-iscsi.yaml -O - | sed -e 's/^/    /g' >> iscsi.yaml
 ```
@@ -251,7 +251,7 @@ wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/exam
 Once you've got your files you can install democratic-csi like this:
 
 
-```
+```shell
 helm upgrade --install --create-namespace --values nfs.yaml --namespace storage nfs democratic-csi/democratic-csi
 helm upgrade --install --create-namespace --values iscsi.yaml --namespace storage iscsi democratic-csi/democratic-csi
 ```
@@ -260,7 +260,7 @@ If you're experimenting with various settings make sure to uninstall helm releas
 
 State after install (depends on how many nodes you've got in your cluster):
 
-```
+```shell
 # helm ls -n storage
 NAME 	NAMESPACE	REVISION	UPDATED                              	STATUS  	CHART                	APP VERSION
 iscsi	storage  	1       	2023-06-07 18:54:00.318001 +0200 CEST	deployed	democratic-csi-0.13.7	1.0
@@ -294,7 +294,7 @@ replicaset.apps/nfs-democratic-csi-controller-658b478c97     1         1        
 Files that we can use to test actual PVC:
 
 pvc-iscsi.yaml
-```
+```yaml
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -311,7 +311,7 @@ spec:
 ```
 
 pvc-nfs.yaml
-```
+```yaml
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -329,7 +329,7 @@ spec:
 
 And actual test:
 
-```
+```shell
 # kubectl apply -f pvc-iscsi.yaml -f pvc-nfs.yaml
 persistentvolumeclaim/test-claim-iscsi created
 persistentvolumeclaim/test-claim-nfs created
@@ -341,7 +341,7 @@ test-claim-nfs     Bound    pvc-86623c48-6f32-4d29-8baf-7881c8da1ec2   1Gi      
 
 And cleaning up.
 
-```
+```shell
 # kubectl delete -f pvc-iscsi.yaml -f pvc-nfs.yaml
 persistentvolumeclaim "test-claim-iscsi" deleted
 persistentvolumeclaim "test-claim-nfs" deleted
