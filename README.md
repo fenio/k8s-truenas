@@ -44,7 +44,7 @@ EOF
 Hash at the beginning of lines means you have to run them as root. So in case you're on Ubuntu just add sudo in front of these commands.
 In case of Fedora/RedHat based systems something like that should also work:
 
-```
+```shell
 # dnf install -y lsscsi iscsi-initiator-utils sg3_utils device-mapper-multipath
 ```
 
@@ -74,7 +74,7 @@ If you want to use it in production environment then you have to tweak it and ma
 ### K8S
 Let's start with adding repo.
 
-```
+```shell
 helm repo add democratic-csi https://democratic-csi.github.io/charts/
 helm repo update
 ```
@@ -91,7 +91,7 @@ Most of the people will have to do more or less the same but NOT all of them. So
 
 ### nfs.yaml
 
-```
+```yaml
 csiDriver:
   name: "nfs"
 storageClasses:
@@ -149,7 +149,7 @@ Obviously you have to change at least paths and IP of the server.
 
 Below are the commands to get full file with comments.
 
-```
+```shell
 wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-nfs.yaml -O - | sed '/INLINE/,$d' > nfs.yaml
 wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-nfs.yaml -O - | sed -e 's/^/    /g' >> nfs.yaml
 ```
@@ -160,7 +160,7 @@ Make sure to double check your actual portal ID in CLI or over API as TrueNAS We
 
 Here's how to check it from NAS cli:
 
-```
+```shell
 root@nas[~]# cli
 [nas]> sharing iscsi portal query
 +----+-----+---------+--------+----------------------+---------------------+
@@ -172,7 +172,7 @@ root@nas[~]# cli
 
 Or straight from Linux shell but also using NAS cli:
 
-```
+```shell
 root@nas[~]# cli -c "sharing iscsi portal query"
 +----+-----+---------+--------+----------------------+---------------------+
 | id | tag | comment | listen | discovery_authmethod | discovery_authgroup |
@@ -181,7 +181,7 @@ root@nas[~]# cli -c "sharing iscsi portal query"
 +----+-----+---------+--------+----------------------+---------------------+
 ```
 
-<pre><code>
+```yaml
 csiDriver:
   name: "iscsi"
 storageClasses:
@@ -222,7 +222,7 @@ driver:
       zvolEnableReservation: false
       zvolBlocksize:
     iscsi:
-      <span style="color:red">*targetPortal: "10.10.20.100:3260"*</span>
+      targetPortal: "10.10.20.100:3260"
       targetPortals: [] 
       interface:
       namePrefix: csi-
@@ -238,7 +238,7 @@ driver:
       extentBlocksize: 512
       extentRpm: "SSD"
       extentAvailThreshold: 0
-</code></pre>
+```
 
 Again above is simplified/streamlined version of values file. Below are the commands to get file with comments.
 You have to change portal details so at least its IP, group and initiator group.
