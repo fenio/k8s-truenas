@@ -75,8 +75,8 @@ If you want to use it in production environment then you have to tweak it and ma
 Let's start with adding repo.
 
 ```shell
-helm repo add democratic-csi https://democratic-csi.github.io/charts/
-helm repo update
+# helm repo add democratic-csi https://democratic-csi.github.io/charts/
+# helm repo update
 ```
 
 Now few words about YAML files used as values for helm charts. 
@@ -150,8 +150,8 @@ Obviously you have to change at least paths and IP of the server.
 Below are the commands to get full file with comments.
 
 ```shell
-wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-nfs.yaml -O - | sed '/INLINE/,$d' > nfs.yaml
-wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-nfs.yaml -O - | sed -e 's/^/    /g' >> nfs.yaml
+# wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-nfs.yaml -O - | sed '/INLINE/,$d' > nfs.yaml
+# wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-nfs.yaml -O - | sed -e 's/^/    /g' >> nfs.yaml
 ```
 
 ### iscsi.yaml
@@ -244,16 +244,16 @@ Again above is simplified/streamlined version of values file. Below are the comm
 You have to change portal details so at least its IP, group and initiator group.
 
 ```shell
-wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-iscsi.yaml -O - | sed '/INLINE/,$d' > iscsi.yaml
-wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-iscsi.yaml -O - | sed -e 's/^/    /g' >> iscsi.yaml
+# wget https://raw.githubusercontent.com/democratic-csi/charts/master/stable/democratic-csi/examples/freenas-iscsi.yaml -O - | sed '/INLINE/,$d' > iscsi.yaml
+# wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-iscsi.yaml -O - | sed -e 's/^/    /g' >> iscsi.yaml
 ```
 
 Once you've got your files you can install democratic-csi like this:
 
 
 ```shell
-helm upgrade --install --create-namespace --values nfs.yaml --namespace storage nfs democratic-csi/democratic-csi
-helm upgrade --install --create-namespace --values iscsi.yaml --namespace storage iscsi democratic-csi/democratic-csi
+# helm upgrade --install --create-namespace --values nfs.yaml --namespace storage nfs democratic-csi/democratic-csi
+# helm upgrade --install --create-namespace --values iscsi.yaml --namespace storage iscsi democratic-csi/democratic-csi
 ```
 
 If you're experimenting with various settings make sure to uninstall helm release everytime as above command will try to update existing release if it already exists.
