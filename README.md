@@ -160,7 +160,7 @@ Make sure to double check your actual portal ID in CLI or over API as TrueNAS We
 
 Here's how to check it from NAS cli:
 
-```
+```shell
 root@nas[~]# cli
 [nas]> sharing iscsi portal query
 +----+-----+---------+--------+----------------------+---------------------+
