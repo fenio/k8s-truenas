@@ -181,7 +181,7 @@ root@nas[~]# cli -c "sharing iscsi portal query"
 +----+-----+---------+--------+----------------------+---------------------+
 ```
 
-<pre>
+<pre><code>
 csiDriver:
   name: "iscsi"
 storageClasses:
@@ -222,7 +222,7 @@ driver:
       zvolEnableReservation: false
       zvolBlocksize:
     iscsi:
-      <span style="color:red">targetPortal: "10.10.20.100:3260"</span>
+      <span style="color:red">*targetPortal: "10.10.20.100:3260"*</span>
       targetPortals: [] 
       interface:
       namePrefix: csi-
@@ -238,7 +238,7 @@ driver:
       extentBlocksize: 512
       extentRpm: "SSD"
       extentAvailThreshold: 0
-</pre>
+</code></pre>
 
 Again above is simplified/streamlined version of values file. Below are the commands to get file with comments.
 You have to change portal details so at least its IP, group and initiator group.
