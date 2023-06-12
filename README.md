@@ -222,7 +222,7 @@ driver:
       zvolEnableReservation: false
       zvolBlocksize:
     iscsi:
-      <color="red">targetPortal: "10.10.20.100:3260"</color>
+      <span style="color:red">targetPortal: "10.10.20.100:3260"</span>
       targetPortals: [] 
       interface:
       namePrefix: csi-
