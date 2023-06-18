@@ -228,7 +228,7 @@ driver:
       namePrefix: csi-
       nameSuffix: "-clustera"
       targetGroups:
-        - targetGroupPortalGroup: 11
+        - targetGroupPortalGroup: 8
           targetGroupInitiatorGroup: 14
           targetGroupAuthType: None
           targetGroupAuthGroup:
