@@ -9,7 +9,7 @@ technologies and if you just want to have NFS/iSCSI over API then the whole setu
 ### Prerequisities
 You're here cause you want to connect Kubernetes cluster to TrueNAS Scale based NAS right?
 So you need:
-* K8S cluster - in my case deployed using [kubespray](https://kubespray.io) but it shouldn't really matter what you use to create it.
+* K8S cluster - in my case deployed using [k0sctl](https://https://github.com/k0sproject/k0sctl) but it shouldn't really matter what you use to create it.
 * NAS based on TrueNAS Scale - in my case it's [ugly-nas](https://github.com/fenio/ugly-nas) 
 
 ## Preparations
@@ -86,6 +86,10 @@ But if you want to use just NFS/iSCSI and just over API then their documentation
 Below files prepared by me are based on already combined files but for reference you will also find commands to create skeleton files that you can adapt yourself.
 But I want to make it clear. Below you will find simplified version of two files grabbed from democractic-csi repo, merged together, with removed comments and adapted to my needs.
 Most of the people will have to do more or less the same but NOT all of them. So be aware that my files might not be something that you can copy and paste to your environment. 
+
+And a side note. Below is example how to install democratic-csi using helm with values file.
+I don't really do it manually like this. In reality I'm deploying democratic-csi using flux which handles my [homelab](https://github.com/fenio/homelab).
+So to see actual value files used to deploy democratic-csi on my cluster take a look at my [repo](https://github.com/fenio/homelab/tree/main/cluster/apps/storage/democratic-csi)
 
 ## Files with values.
 
