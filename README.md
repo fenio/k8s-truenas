@@ -72,6 +72,11 @@ Be aware that above setups aren't hardened at all. It's just basic setup created
 If you want to use it in production environment then you have to tweak it and make it more secure.
 
 ### K8S
+
+Side note. Below is example how to install democratic-csi using helm with values file.
+I don't really do it manually like this. In reality I'm deploying democratic-csi using flux which handles my [homelab](https://github.com/fenio/homelab).
+So to see actual value files used to deploy democratic-csi on my cluster take a look at my [repo](https://github.com/fenio/homelab/tree/main/cluster/apps/storage/democratic-csi)
+
 Let's start with adding repo.
 
 ```shell
@@ -87,9 +92,6 @@ Below files prepared by me are based on already combined files but for reference
 But I want to make it clear. Below you will find simplified version of two files grabbed from democractic-csi repo, merged together, with removed comments and adapted to my needs.
 Most of the people will have to do more or less the same but NOT all of them. So be aware that my files might not be something that you can copy and paste to your environment. 
 
-And a side note. Below is example how to install democratic-csi using helm with values file.
-I don't really do it manually like this. In reality I'm deploying democratic-csi using flux which handles my [homelab](https://github.com/fenio/homelab).
-So to see actual value files used to deploy democratic-csi on my cluster take a look at my [repo](https://github.com/fenio/homelab/tree/main/cluster/apps/storage/democratic-csi)
 
 ## Files with values.
 
