@@ -75,7 +75,7 @@ If you want to use it in production environment then you have to tweak it and ma
 
 Side note. Below is example how to install democratic-csi using helm with values file.
 I don't really do it manually like this. In reality I'm deploying democratic-csi using flux which handles my [homelab](https://github.com/fenio/homelab).
-So to see actual value files used to deploy democratic-csi on my cluster take a look at my [repo](https://github.com/fenio/homelab/tree/main/cluster/apps/storage/democratic-csi)
+So to see actual value files used to deploy democratic-csi on my cluster take a look at my [repo](https://github.com/fenio/homelab/tree/main/cluster/apps/storage/democratic-csi).
 
 Let's start with adding repo.
 
