@@ -9,7 +9,7 @@ technologies and if you just want to have NFS/iSCSI over API then the whole setu
 ### Prerequisities
 You're here cause you want to connect Kubernetes cluster to TrueNAS Scale based NAS right?
 So you need:
-* K8S cluster - in my case deployed using [k0sctl](https://https://github.com/k0sproject/k0sctl) but it shouldn't really matter what you use to create it.
+* K8S cluster - in my case deployed using [k0sctl](https://github.com/k0sproject/k0sctl) but it shouldn't really matter what you use to create it.
 * NAS based on TrueNAS Scale - in my case it's [ugly-nas](https://github.com/fenio/ugly-nas) 
 
 ## Preparations
