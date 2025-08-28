@@ -160,8 +160,8 @@ Below are the commands to get full file with comments.
 # wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-nfs.yaml -O - | sed -e 's/^/    /g' >> nfs.yaml
 ```
 
-Notice that since TrueNAS 25, the TrueNAS API no longer returns "SCALE" in the version string which throws the csi-driver off with error when trying to bound NFS mount.
-This is fixed in the "next" branch of the democratic-csi repository. Therefore you should add the following to your nfs.yaml:
+Notice that since TrueNAS 25, the TrueNAS API no longer returns "SCALE" in the version string which will stop democractic-csi controller starting up properly.
+A fix has been applied in the "next" branch of the democratic-csi repository. As a result, you should add the following to your nfs.yaml:
 
 ```yaml
 controller:
@@ -169,7 +169,8 @@ controller:
     image:
       tag: next
 ```
-This will change the csi-driver from the next branch.
+
+This will change the csi-driver image from the "latest" tag to "next" tag.
 
 ### iscsi.yaml
 
