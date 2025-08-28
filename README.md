@@ -160,6 +160,17 @@ Below are the commands to get full file with comments.
 # wget https://raw.githubusercontent.com/democratic-csi/democratic-csi/master/examples/freenas-api-nfs.yaml -O - | sed -e 's/^/    /g' >> nfs.yaml
 ```
 
+Notice that since TrueNAS 25, the TrueNAS API no longer returns "SCALE" in the version string which throws the csi-driver off with error when trying to bound NFS mount.
+This is fixed in the "next" branch of the democratic-csi repository. Therefore you should add the following to your nfs.yaml:
+
+```yaml
+controller:
+  driver:
+    image:
+      tag: next
+```
+This will change the csi-driver from the next branch.
+
 ### iscsi.yaml
 
 Make sure to double check your actual portal ID in CLI or over API as TrueNAS WebUI isn't really reliable with regard to that.
