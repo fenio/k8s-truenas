@@ -2,6 +2,8 @@
 
 [democratic-csi](https://github.com/democratic-csi/democratic-csi) based simple guide to use Kubernetes cluster with TrueNAS Scale over API. 
 
+If you prefer new JSON-RPC 2.0 over WebSocket API then you can try my [tns-csi](https://github.com/fenio/tns-csi) driver instead.
+
 You can use the democratic-csi documentation and achieve the same results, but the reason I created this 
 guide is that the democratic-csi docs cover multiple complex combinations of various 
 technologies. If you just want to have NFS/iSCSI over API, then the whole setup guide can be much simpler.
